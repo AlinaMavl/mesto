@@ -1,0 +1,13 @@
+.element__like {
+  background-image: url(../../../images/сердце.png);
+  width: 22px;
+  height: 19px;
+  position: relative;
+  top: 5px;
+  right: 8px;
+  flex-shrink: 0;
+}
+
+.element__like:hover {
+  opacity: .5;
+}
