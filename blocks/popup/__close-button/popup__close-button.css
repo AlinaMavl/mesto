@@ -1,0 +1,17 @@
+.popup__close-button {
+  background-image: url(../../../images/крестик.png);
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  cursor: pointer;
+
+}
+
+@media (max-width:425px) {
+  .popup__close-button {
+    background-size: 20px 20px;
+  }
+}

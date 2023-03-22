@@ -1,75 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
-</head>
-<body class="body">
-  <main class="page">
-    <header class="header">
-      <img src="./images/логотип.png" alt="Логотип" class="header__logo">
-    </header>
-    <section class="profile">
-      <div><img src="./images/аватар.jpg" alt="Аватар" class="profile__avatar"></div>
-      <div class="profile__info">
-        <div class="profile__full-name">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__description">Исследователь океана</p>
+  </head>
+  <body class="body">
+    <main class="page">
+      <header class="header">
+        <img src="./images/логотип.png" alt="Логотип" class="header__logo">
+      </header>
+      <section class="profile">
+        <div><img src="./images/аватар.jpg" alt="Аватар" class="profile__avatar"></div>
+        <div class="profile__info">
+          <div class="profile__full-name">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__description">Исследователь океана</p>
+          </div>
+          <div class="profile__edit-button" role="button"></div>
         </div>
-        <div class="profile__edit-button" role="button"></div>
-      </div>
-      <div class="profile__add-button" role="button"></div>
-    </section>
-    <section class="elements">
-      <div class="element">
-        <img src="./images/замок.png" alt="Карачаевск" class="element__image">
-        <div class="element__name">
+        <div class="profile__add-button" role="button"></div>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img src="./images/замок.png" alt="Карачаевск" class="element__image">
+          <div class="element__name">
             <p class="element__caption">Карачаевск</p>
             <div class="element__like"></div>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/горы.png" alt="Гора Эльбрус" class="element__image">
-        <div class="element__name">
+        <div class="element">
+          <img src="./images/горы.png" alt="Гора Эльбрус" class="element__image">
+          <div class="element__name">
             <p class="element__caption">Гора Эльбрус</p>
             <div class="element__like"></div>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/поля.png" alt="Домбай" class="element__image">
-        <div class="element__name">
+        <div class="element">
+          <img src="./images/поля.png" alt="Домбай" class="element__image">
+          <div class="element__name">
             <p class="element__caption">Домбай</p>
             <div class="element__like"></div>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/горы.png" alt="Гора Эльбрус" class="element__image">
-        <div class="element__name">
+        <div class="element">
+          <img src="./images/горы.png" alt="Гора Эльбрус" class="element__image">
+          <div class="element__name">
             <p class="element__caption">Гора Эльбрус</p>
             <div class="element__like"></div>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/поля.png" alt="Домбай" class="element__image">
-        <div class="element__name">
+        <div class="element">
+          <img src="./images/поля.png" alt="Домбай" class="element__image">
+          <div class="element__name">
             <p class="element__caption">Домбай</p>
             <div class="element__like"></div>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/замок.png" alt="Карачаево-Черкесия" class="element__image">
-        <div class="element__name">
+        <div class="element">
+          <img src="./images/замок.png" alt="Карачаево-Черкесия" class="element__image">
+          <div class="element__name">
             <p class="element__caption">Карачаево-Черкесия</p>
             <div class="element__like"></div>
+          </div>
         </div>
-      </div>
-    </section>
-    <footer class="footer">
-       <p class="footer__copyright">© 2023 Mesto Russia</p>
-    </footer>
-  </main>
-</body>
+      </section>
+      <form class="popup popup_opened">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__name" type="text" required name="fullName"></>
+        <input class="popup__description" type="text" required name="usersInfo"></input>
+        <button class="popup__submit">Сохранить</button>
+        <div class="popup__close-button" role="button"></div>
+      </form>
+      <footer class="footer">
+         <p class="footer__copyright">© 2023 Mesto Russia</p>
+      </footer>
+    </main>
+  </body>
 </html> 

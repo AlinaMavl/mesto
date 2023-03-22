@@ -1,0 +1,23 @@
+.popup_opened {
+    color: #000;
+    background-color: #fff;
+    width: 430px;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 35px 0 37px;
+    position: fixed;
+
+  }
+  
+  @media (max-width:425px) {
+    .popup_opened {
+      padding: 25px 0;
+      width: 282px;
+      height: 322px;
+    }
+  }

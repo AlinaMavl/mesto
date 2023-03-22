@@ -10,17 +10,25 @@
   position: relative;
   top: 38.75px;
   left: 244px;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
   opacity: .6;
 }
 
+@media (max-width:1279px) {
+  .profile__add-button {
+    left: 25px;
+    width: 100px;
+  }
+}
+
 @media (max-width:1024px) {
   .profile__add-button {
-    width: 120px;
     background-size: 19px 19px;
-    left: 100px;
+    left: 15px;
+    width: 70px;
   }
 }
 
