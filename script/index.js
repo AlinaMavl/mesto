@@ -27,7 +27,6 @@ function handleFormSubmit (evt) {
     evt.preventDefault(); 
     nameValue.textContent = nameInput.value;
     jobValue.textContent = jobInput.value;
-    console.log(jobValue.textContent);
 }
 
 formElement.addEventListener(formElement, handleFormSubmit); 
