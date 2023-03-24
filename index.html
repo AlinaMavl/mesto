@@ -19,7 +19,7 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__description">Исследователь океана</p>
           </div>
-          <div class="profile__edit-button" role="button"></div>
+          <div class="profile__edit-button profile__edit-button_opened" role="button"></div>
         </div>
         <div class="profile__add-button" role="button"></div>
       </section>
@@ -67,16 +67,20 @@
           </div>
         </div>
       </section>
-      <form class="popup popup_opened">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__name" type="text" required name="fullName"></>
-        <input class="popup__description" type="text" required name="usersInfo"></input>
-        <button class="popup__submit">Сохранить</button>
-        <div class="popup__close-button" role="button"></div>
+      <form class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__name" type="text" required name="fullName">
+          <input class="popup__description" type="text" required name="usersInfo">
+          <button class="popup__submit popup__submit_saved" type="submit">Сохранить</button>
+          <div class="popup__close-button popup__close-button_closed" role="button"></div>
+        </div>
       </form>
       <footer class="footer">
          <p class="footer__copyright">© 2023 Mesto Russia</p>
       </footer>
+
     </main>
+    <script src="./script/index.js"></script>
   </body>
 </html> 
