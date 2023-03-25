@@ -8,6 +8,10 @@
   top: -40px;
   right: -40px;
   cursor: pointer;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
 }
 
 @media (max-width:425px) {
