@@ -14,7 +14,11 @@
   border: none;
 }
 
-@media (max-width:425px) {
+.popup__close-button:hover {
+  opacity: .6;
+}
+
+@media (max-width:786px) {
   .popup__close-button {
     background-size: 20px 20px;
     top: -35px;
