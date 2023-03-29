@@ -23,10 +23,10 @@ closeButton.addEventListener('click', closedPopup);
 
 
 function handleFormSubmit (evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();
     nameValue.textContent = nameInput.value;
-    jobValue.textContent = jobInput.value;  
-    popupElement.classList.remove('popup_opened');  
+    jobValue.textContent = jobInput.value;
+    closedPopup();
 }
 
-formElement.addEventListener('submit',handleFormSubmit); 
+formElement.addEventListener('submit',handleFormSubmit);
