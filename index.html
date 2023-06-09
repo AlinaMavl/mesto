@@ -43,27 +43,35 @@
       </div>
     </div>
     <div class="popup popup_add_picture">
-      <div class="popup__container">
-        <button class="popup__close-button popup__add_close-button" type="button"></button>
+      <div class="popup__container popup__container_add_picture">
+        <button class="popup__close-button popup__close-button_add" type="button"></button>
         <form class="popup__form popup__form_add-button" method="post">
           <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input" type="text" required name="placeName" placeholder="Название">
-          <input class="popup__input" type="text" required name="pictureLink"
+          <input class="popup__input popup__input_name" type="text" required name="placeName" placeholder="Название">
+          <input class="popup__input popup__input_link" type="text" required name="pictureLink"
             placeholder="Ссылка на картинку">
           <button class="popup__submit popup__submit_add-picture" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
+    <div class="popup popup_view_full">
+      <div class="popup__container popup__container_view_full">
+        <button class="popup__close-button" type="button"></button>
+        <img src="#" alt="#" class="popup__view-image">
+        <h3 class="popup__caption"></h3>
+       </div>
+    </div>
     <template class="picture-template">
-       <div class="element">
-         <img src="./images/замок.png" alt="Замок на холме. Осень" class="element__image">
-            <div class="element__name">
-              <h2 class="element__caption">Карачаевск</h2>
-              <button class="element__like" type="button"></button>
-            </div>
+      <div class="element">
+        <button class="element__delete" type="button"></button>
+        <img src="#" alt="#" class="element__image">
+        <div class="element__name">
+          <h2 class="element__caption"></h2>
+          <button class="element__like" type="button"></button>
         </div>
+      </div>
     </template>
-    <script defer src="./script/index.js"></script>
     <script defer src="./blocks/element/element.js"></script>
+    <script defer src="./script/index.js"></script>
   </body>
 </html>

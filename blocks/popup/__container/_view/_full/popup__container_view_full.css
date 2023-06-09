@@ -1,16 +1,12 @@
-.elements {
-  margin: 0;
+.popup__container_view_full {
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
   color: #000;
-  gap: 20px 17px;
-  border-radius: 10px;
-}
+  }
 
 @media (max-width:1279px) {
-  .elements {
+  .popup__container_view_full {
     align-content: center;
     justify-content: center;
   }
 }
-

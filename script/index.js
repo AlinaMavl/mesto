@@ -1,4 +1,5 @@
 //Попап открытия кнопки редактирования
+
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button');
 const popupElement = document.querySelector(".popup");
@@ -7,12 +8,6 @@ const jobValue = document.querySelector(".profile__description");
 const nameInput = document.querySelector('.popup__input_name_typed');
 const jobInput = document.querySelector('.popup__input_description_typed');
 const formElement = document.querySelector('.popup__form');
-
-//Попап добавление карточек
-const addButton = document.querySelector('.profile__add-button');
-const popupAddPicture = document.querySelector('.popup_add_picture');
-const closeAddButton = popupAddPicture.querySelector('.popup__add_close-button');
-const formElementAdd = popupAddPicture.querySelector('.popup__form_add-button');
 
 // Открытие и закрытие попапа "Редактирование"
 
@@ -40,21 +35,18 @@ function handleFormSubmit (evt) {
 formElement.addEventListener('submit',handleFormSubmit);
 
 //Попап добавление карточек
+const addButton = document.querySelector('.profile__add-button');
+const popupAddPicture = document.querySelector('.popup_add_picture');
+const closeAddButton = popupAddPicture.querySelector('.popup__close-button_add');
+const formElementAdd = popupAddPicture.querySelector('.popup__form_add-button');
 
-function openedAddPopup(){
+function openedAddPopup() {
   popupAddPicture.classList.add('popup_opened');
 };
 
-function closedAddPopup(){
+function closedAddPopup() {
   popupAddPicture.classList.remove('popup_opened');
 };
-
-// function handleFormSubmitAdd (evt) {
-//     evt.preventDefault();
-//     closedAddPopup();
-// };
-
-/////////////ПОДПРАВИТЬ!!!! Сабмит не работает
 
 addButton.addEventListener('click',openedAddPopup);
 closeAddButton.addEventListener('click', closedAddPopup);
@@ -65,25 +57,69 @@ formElementAdd.addEventListener('submit', function handleFormSubmitAdd (evt) {
 });
 
 
-// Создаем все для гридов
+  //Попап увеличения изображения
+// const popupFullView = document.querySelector('.popup__view_full');
+// function popupFullViewOpen() {
+//   popupFullView.classList.add('popup_opened');
+//   createCard(item);
+// }
+
+
+
+
+// Создаем темплейт
+
 const pictureTemplate = document.querySelector('.picture-template');
-console.log(pictureTemplate);
+const templateContent = pictureTemplate.content;
+const element = templateContent.querySelector('.element');
+const elements = document.querySelector('.elements'); // добавляем в эту секцию темплейт
 
-const elemensGrid = document.querySelector('.elements');
 
-const elementsCards = elementCards.map ((elements) => {
-  return elementCards;
+elementCards.forEach( item => {
+  const newElement = createCard(item);
+  elements.prepend(newElement);
 });
 
+//Клонируем темплейт и создаем НОВЫЙ КЛОН в ДОМ
+//QS используется уже для нового!склонированного документа!!!
 
-const createPictureCards = (pictureData) => {
-  const pictureElement = elementCards.content()
-    .querySelector('.element')
-    .cloneNode(true);
-  console.log(pictureElement);
-  console.log(pictureData);
+function createCard (item) {
+  const newElement = element.cloneNode(true);
+  const elementCaption = newElement.querySelector('.element__caption');
+  elementCaption.textContent = item.name;
+  const elementImage = newElement.querySelector('.element__image');
+  elementImage.src= item.link;
+  elementImage.alt= item.name;
+
+  //слушатель удаления
+
+  const deleteButton = newElement.querySelector('.element__delete');
+  deleteButton.addEventListener('click', function() {
+    elements.removeChild(newElement);
+  });
+
+  // ставим лайк
+
+  const buttonLike = newElement.querySelector('.element__like');
+  buttonLike.addEventListener('click', function(evt) {
+    evt.target.classList.toggle('element__like_active');
+  });
+
+  return newElement;
 };
 
-// elementCards.forEach ((picture) => {
-//   createPictureCards(picture);
-// });
+//Создаем логику добавления карточек через попап Новое место
+const addInputName = document.querySelector('.popup__input_name');
+const addInputLink = document.querySelector('.popup__input_link');
+
+formElementAdd.addEventListener('submit', function(evt){
+  evt.preventDefault();
+  //Здесь createCard ждет объект вида! так он и вставляется!
+  const cardData = {
+    name: addInputName.value,
+    link: addInputLink.value,
+  };
+  const newElement = createCard(cardData);
+  elements.prepend(newElement);
+  formElementAdd.reset();
+});
