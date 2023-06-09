@@ -1,8 +1,9 @@
 .popup__container_view_full {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 282px);
-  color: #000;
-  }
+  max-width: 75vmax;
+  max-height: 75vmax;
+  background-color: rgba(0,0,0,0);
+  padding: 0;
+}
 
 @media (max-width:1279px) {
   .popup__container_view_full {

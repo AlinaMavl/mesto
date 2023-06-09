@@ -57,16 +57,6 @@ formElementAdd.addEventListener('submit', function handleFormSubmitAdd (evt) {
 });
 
 
-  //Попап увеличения изображения
-// const popupFullView = document.querySelector('.popup__view_full');
-// function popupFullViewOpen() {
-//   popupFullView.classList.add('popup_opened');
-//   createCard(item);
-// }
-
-
-
-
 // Создаем темплейт
 
 const pictureTemplate = document.querySelector('.picture-template');
@@ -105,6 +95,23 @@ function createCard (item) {
     evt.target.classList.toggle('element__like_active');
   });
 
+  //Попап увеличения изображения
+
+  const popupFullView = document.querySelector('.popup_view_full');
+  const popupCaption = popupFullView.querySelector('.popup__caption');
+  const popupViewImage = popupFullView.querySelector('.popup__view-image');
+
+  elementImage.addEventListener('click', () => {
+    popupFullView.classList.add('popup_opened');
+    popupCaption.textContent = item.name,
+    popupViewImage.src = item.link
+  });
+
+  const deleteButtonFullView = popupFullView.querySelector('.popup__close-button');
+
+  deleteButtonFullView.addEventListener('click', () => {
+    popupFullView.classList.remove('popup_opened');
+  });
   return newElement;
 };
 
