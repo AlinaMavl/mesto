@@ -1,13 +1,9 @@
 .popup__container_view_full {
-  max-width: 75vmax;
-  max-height: 75vmax;
-  background-color: rgba(0,0,0,0);
+  display: flex;
+  flex-direction: column;
   padding: 0;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, .1);
+  width: fit-content;
 }
 
-@media (max-width:1279px) {
-  .popup__container_view_full {
-    align-content: center;
-    justify-content: center;
-  }
-}

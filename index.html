@@ -31,7 +31,7 @@
     <footer class="footer">
        <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup__edit">
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <form class="popup__form" name="change_profile_information" method="post">
@@ -43,25 +43,23 @@
       </div>
     </div>
     <div class="popup popup_add_picture">
-      <div class="popup__container popup__container_add_picture">
-        <button class="popup__close-button popup__close-button_add" type="button"></button>
-        <form class="popup__form popup__form_add-button" method="post">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <form class="popup__form" method="post">
           <h2 class="popup__title">Новое место</h2>
           <input class="popup__input popup__input_name" type="text" required name="placeName" placeholder="Название">
           <input class="popup__input popup__input_link" type="text" required name="pictureLink"
             placeholder="Ссылка на картинку">
-          <button class="popup__submit popup__submit_add-picture" type="submit">Сохранить</button>
+          <button class="popup__submit popup__submit_add-picture" type="submit">Создать</button>
         </form>
       </div>
     </div>
     <div class="popup popup_view_full">
       <div class="popup__container popup__container_view_full">
         <button class="popup__close-button" type="button"></button>
-        <div class="popup__image-container">
-          <img src="#" alt="#"
-            class="popup__view-image">
-          <p class="popup__caption"></p>
-        </div>
+        <img src="#" alt="#"
+          class="popup__view-image">
+        <p class="popup__caption"></p>
        </div>
     </div>
     <template class="picture-template">
