@@ -21,10 +21,9 @@ function closePopup(item){
 
 //попап "Редактирование"
 
-nameInput.value = nameValue.textContent;
-jobInput.value = jobValue.textContent;
-
 editButton.addEventListener('click', function(){
+  nameInput.value = nameValue.textContent;
+  jobInput.value = jobValue.textContent;
   openPopup(popupEdit);
 });
 
