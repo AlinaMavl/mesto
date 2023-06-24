@@ -9,14 +9,30 @@ const nameInput = popupEdit.querySelector('.popup__input_name_typed');
 const jobInput = popupEdit.querySelector('.popup__input_description_typed');
 const editForm = popupEdit.querySelector('.popup__form');
 
-//Открытие и закрытие попапа "Редактирование"
+//Открытие и закрытие попапов
+function clickOnOverlay (evt) {
+  if(evt.target.classList.contains('popup')){
+    closePopup(evt.target);
+  }
+};
+
+function clickOnEsc(evt) {
+  const popupOpened = document.querySelector('.popup_opened');
+  if(evt.key === 'Escape') {
+    closePopup(popupOpened);
+  }
+};
 
 function openPopup(item) {
   item.classList.add('popup_opened');
+  document.addEventListener('keydown', clickOnEsc);
+  document.addEventListener('click', clickOnOverlay);
 };
 
 function closePopup(item){
   item.classList.remove('popup_opened');
+  document.removeEventListener('click', clickOnOverlay);
+  document.removeEventListener('keydown', clickOnEsc);
 };
 
 //попап "Редактирование"
@@ -135,3 +151,4 @@ formElementAdd.addEventListener('submit', function(evt){
   elements.prepend(newElement);
   formElementAdd.reset();
 });
+

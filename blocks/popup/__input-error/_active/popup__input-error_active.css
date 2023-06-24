@@ -1,0 +1,14 @@
+  .popup__input-error_active {
+    margin: 0;
+    color: rgba(255, 0, 0, 1);
+    font-size: 12px;
+    line-height: 1.21;
+    max-width: fit-content;
+    width: 358px;
+  }
+
+  @media (max-width:425px) {
+    .popup__input-error_active {
+      width: 238px;
+    }
+  }
