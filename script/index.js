@@ -9,30 +9,37 @@ const nameInput = popupEdit.querySelector('.popup__input_name_typed');
 const jobInput = popupEdit.querySelector('.popup__input_description_typed');
 const editForm = popupEdit.querySelector('.popup__form');
 
+const popupAddPicture = document.querySelector('.popup_add_picture');
+const popupFullView = document.querySelector('.popup_view_full');
+
 //Открытие и закрытие попапов
+
+function openPopup(item) {
+  item.classList.add('popup_opened');
+  document.addEventListener('keydown', clickOnEsc);
+};
+
+function closePopup(item){
+  item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', clickOnEsc);
+};
+
+//Так как попапы всегда присутствуют в разметке, достаточно установить слушатели только один раз в теле модуля, не переустанавливая при каждом открытии модального окна
 function clickOnOverlay (evt) {
   if(evt.target.classList.contains('popup')){
     closePopup(evt.target);
   }
 };
+popupEdit.addEventListener('click', clickOnOverlay);
+popupAddPicture.addEventListener('click', clickOnOverlay);
+popupFullView.addEventListener('click', clickOnOverlay);
 
+//слушатель клавиатуры надо устанавливать и удалять, так как он устанавливается на весь документ.
 function clickOnEsc(evt) {
   const popupOpened = document.querySelector('.popup_opened');
   if(evt.key === 'Escape') {
     closePopup(popupOpened);
   }
-};
-
-function openPopup(item) {
-  item.classList.add('popup_opened');
-  document.addEventListener('keydown', clickOnEsc);
-  document.addEventListener('click', clickOnOverlay);
-};
-
-function closePopup(item){
-  item.classList.remove('popup_opened');
-  document.removeEventListener('click', clickOnOverlay);
-  document.removeEventListener('keydown', clickOnEsc);
 };
 
 //попап "Редактирование"
@@ -59,7 +66,6 @@ editForm.addEventListener('submit',handleEditFormSubmit);
 //Попап добавление карточек
 
 const addButton = document.querySelector('.profile__add-button');
-const popupAddPicture = document.querySelector('.popup_add_picture');
 const closeAddButton = popupAddPicture.querySelector('.popup__close-button');
 const formElementAdd = popupAddPicture.querySelector('.popup__form');
 
@@ -127,7 +133,7 @@ function createCard (item) {
 
 //Попап увеличения изображения константы и закрытие! Открытие выше в креате кард!
 
-const popupFullView = document.querySelector('.popup_view_full');
+
 const popupCaption = popupFullView.querySelector('.popup__caption');
 const popupViewImage = popupFullView.querySelector('.popup__view-image');
 const closeButtonFullView = popupFullView.querySelector('.popup__close-button');
@@ -137,11 +143,14 @@ closeButtonFullView.addEventListener('click', () => {
 });
 
 //Создаем логику добавления карточек через попап Новое место
-const addInputName = document.querySelector('.popup__input_name');
-const addInputLink = document.querySelector('.popup__input_link');
+const addInputName = popupAddPicture.querySelector('.popup__input_name');
+const addInputLink = popupAddPicture.querySelector('.popup__input_link');
 
 formElementAdd.addEventListener('submit', function(evt){
   evt.preventDefault();
+  //кнопка добавить д.б. неактивной после добавления новой карточки
+  evt.submitter.classList.add('popup__submit_inactive');
+  evt.submitter.disabled = true;
   //Здесь createCard ждет объект вида! так он и вставляется!
   const cardData = {
     name: addInputName.value,
@@ -149,6 +158,8 @@ formElementAdd.addEventListener('submit', function(evt){
   };
   const newElement = createCard(cardData);
   elements.prepend(newElement);
+
   formElementAdd.reset();
+
 });
 
