@@ -30,9 +30,11 @@ function clickOnOverlay (evt) {
     closePopup(evt.target);
   }
 };
-popupEdit.addEventListener('click', clickOnOverlay);
-popupAddPicture.addEventListener('click', clickOnOverlay);
-popupFullView.addEventListener('click', clickOnOverlay);
+//нужно перебрать все попапы, которые есть в системе и на каждый установить один и тот же слушатель.
+document.querySelectorAll('.popup').forEach( popup => {
+  //нужно использовать событие mousedown, а не click, чтобы не закрыть случайно попап по оверлею, если нажать мышкой внутри попапа, а потом, не разжимая, передвинуть курсор на оверлей. Такой баг появляется с событием click.
+  popup.addEventListener('mousedown', clickOnOverlay);
+})
 
 //слушатель клавиатуры надо устанавливать и удалять, так как он устанавливается на весь документ.
 function clickOnEsc(evt) {
@@ -72,13 +74,10 @@ const formElementAdd = popupAddPicture.querySelector('.popup__form');
 addButton.addEventListener('click',function() {
   openPopup(popupAddPicture);
 });
+
+
 closeAddButton.addEventListener('click', function() {
   closePopup(popupAddPicture);
-});
-
-formElementAdd.addEventListener('submit', function handleFormSubmitAdd (evt) {
-    evt.preventDefault();
-    closePopup(popupAddPicture);
 });
 
 // Создаем темплейт
@@ -146,8 +145,10 @@ closeButtonFullView.addEventListener('click', () => {
 const addInputName = popupAddPicture.querySelector('.popup__input_name');
 const addInputLink = popupAddPicture.querySelector('.popup__input_link');
 
-formElementAdd.addEventListener('submit', function(evt){
+formElementAdd.addEventListener('submit', function (evt) {
+  closePopup(popupAddPicture);
   evt.preventDefault();
+
   //кнопка добавить д.б. неактивной после добавления новой карточки
   evt.submitter.classList.add('popup__submit_inactive');
   evt.submitter.disabled = true;
@@ -162,4 +163,5 @@ formElementAdd.addEventListener('submit', function(evt){
   formElementAdd.reset();
 
 });
+
 
