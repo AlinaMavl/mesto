@@ -78,8 +78,13 @@ closeButtonFullView.addEventListener("click", () => {
 
 //добавляем каждую карт в сетку//здесь используем класс кард!
 
+// elementCards.forEach((item) => {
+//   const card = new Card(item, '.picture-template_type_default');
+//   const cardElement = card.createCard();
+//   elements.prepend(cardElement);
+// });
 elementCards.forEach((item) => {
-  const card = new Card(item);
+  const card = new Card(item,'.picture-template_type_default');
   elements.prepend(card.createCard());
 });
 
@@ -89,16 +94,17 @@ formElementAdd.addEventListener("submit", function (evt) {
   closePopup(popupAddPicture);
   evt.preventDefault();
 
-  //кнопка добавить д.б. неактивной после добавления новой карточки
-  evt.submitter.classList.add("popup__submit_inactive");
-  evt.submitter.disabled = true;
   //Здесь createCard ждет объект вида
   const cardData = {
     name: addInputName.value,
     link: addInputLink.value,
+
   };
+
   const newElement = new Card(cardData);
+
   elements.prepend(newElement.createCard());
+  validationEditPopup.toggleButtonState();
   formElementAdd.reset();
 })
 
@@ -111,7 +117,7 @@ export const settings = {
   errorClass: 'popup__input-error_active',
 };
 
-// в index.js создается экземпляр класса и вызывается его метод
+//в index.js создается экземпляр класса и вызывается его метод
 
 const addForm = document.forms.profile;
 const validationAddPopup = new FormValidator(settings, addForm);
