@@ -20,8 +20,8 @@ function clickOnOverlay(evt) {
 
 //слушатель клавиатуры надо устанавливать и удалять, так как он устанавливается на весь документ.
 function clickOnEsc(evt) {
-  const popupOpened = document.querySelector(".popup_opened");
   if (evt.key === "Escape") {
+    const popupOpened = document.querySelector(".popup_opened");
     closePopup(popupOpened);
   }
 }

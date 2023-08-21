@@ -1,16 +1,22 @@
-import { openPopup, closePopup, clickOnOverlay, clickOnEsc } from "./utils.js";
-import {popupFullView} from "./index.js";
+import { openPopup} from "./utils.js";
+import {popupFullView,} from "./index.js";
 
 class Card {
-  constructor(element) {
+  constructor(element, templateSelector) {
+    this._templateSelector = templateSelector;
+    this._newCard = this._getTemplate();
     this._name = element.name;
     this._link = element.link;
+
+
   }
+
   // Создаем темплейт
   _getTemplate() {
     const cardTemplate = document
       .querySelector(".picture-template")
-      .content.querySelector(".element")
+      .content
+      .querySelector(".element")
       .cloneNode(true); // добавляем в эту секцию темплейт и клонируем
 
     return cardTemplate;
@@ -20,9 +26,9 @@ class Card {
   _setData() {
     const elementCaption = this._newCard.querySelector(".element__caption");
     elementCaption.textContent = this._name;
-    const elementImage = this._newCard.querySelector(".element__image");
-    elementImage.src = this._link;
-    elementImage.alt = this._name;
+    this._elementImage = this._newCard.querySelector('.element__image');
+    this._elementImage.src = this._link;
+    this._elementImage.alt = this._name;
   }
   //для слушателя кнопки удаления
   _handleDeleteButton() {
@@ -31,8 +37,8 @@ class Card {
   }
 
   //ддя слуш кнопки лайка
-  _handleLikeButton(element) {
-    element.classList.toggle("element__like_active");
+  _handleLikeButton() {
+    this._buttonLike.classList.toggle('element__like_active');
   }
 
   //для откртыия полноразмен попапа
@@ -54,16 +60,17 @@ class Card {
     deleteButton.addEventListener("click", this._handleDeleteButton.bind(this));
 
     // ставим лайк
-    const buttonLike = this._newCard.querySelector(".element__like");
+    this._buttonLike = this._newCard.querySelector(".element__like");
     //стрелоч функц с колбэком другой функц с данным контекстом
-    buttonLike.addEventListener("click", () => {
-      this._handleLikeButton(buttonLike);
+    this._buttonLike.addEventListener("click", () => {
+      this._handleLikeButton(this._buttonLike);
     });
 
+    this._elementImage.addEventListener("click", () => {
+      this._handleOpenFullViewPopup();
 
-    const elementImage = this._newCard.querySelector(".element__image");
-    elementImage.addEventListener("click", () => {
-      this._handleOpenFullViewPopup(); });
+     });
+    //
 
   }
 
