@@ -78,11 +78,6 @@ closeButtonFullView.addEventListener("click", () => {
 
 //добавляем каждую карт в сетку//здесь используем класс кард!
 
-// elementCards.forEach((item) => {
-//   const card = new Card(item, '.picture-template_type_default');
-//   const cardElement = card.createCard();
-//   elements.prepend(cardElement);
-// });
 elementCards.forEach((item) => {
   const card = new Card(item,'.picture-template_type_default');
   elements.prepend(card.createCard());
@@ -104,8 +99,8 @@ formElementAdd.addEventListener("submit", function (evt) {
   const newElement = new Card(cardData);
 
   elements.prepend(newElement.createCard());
-  validationEditPopup.toggleButtonState();
   formElementAdd.reset();
+  validationEditPopup.toggleButtonState();
 })
 
 export const settings = {

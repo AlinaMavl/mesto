@@ -9,9 +9,7 @@ class FormValidator {
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
-    // this._form = document.querySelector(this._formElement);
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._inputElement = this._formElement.querySelectorAll(this._inputSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));;
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector)
 
   }
@@ -53,9 +51,9 @@ _setEventListener () {
       this._checkInputValidity(inputElement)
       //Вызов функц toggleButtonState в теле обработчика события input.
       //Такой вызов проверит состояние кнопки при каждом изменении символа в любом из полей.
-      this.toggleButtonState(this._buttonElement);
+      this.toggleButtonState();
     });
-    this.toggleButtonState(this._buttonElement);
+    this.toggleButtonState();
   });
 };
 
