@@ -7,8 +7,6 @@ class Card {
     this._newCard = this._getTemplate();
     this._name = element.name;
     this._link = element.link;
-
-
   }
 
   // Создаем темплейт
@@ -63,15 +61,13 @@ class Card {
     this._buttonLike = this._newCard.querySelector(".element__like");
     //стрелоч функц с колбэком другой функц с данным контекстом
     this._buttonLike.addEventListener("click", () => {
-      this._handleLikeButton(this._buttonLike);
+      this._handleLikeButton();
     });
 
     this._elementImage.addEventListener("click", () => {
       this._handleOpenFullViewPopup();
 
      });
-    //
-
   }
 
   //создаем карту
