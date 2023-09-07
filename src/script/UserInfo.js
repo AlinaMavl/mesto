@@ -1,8 +1,7 @@
-import PopupWithForm from './PopupWithForm.js';
 
-class UserInfo extends PopupWithForm {
+class UserInfo {
   constructor ({userName, userDescription}) {
-    this._name = userName,
+    this._name = userName;
     this._description = userDescription
   }
 

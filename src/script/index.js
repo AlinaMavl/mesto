@@ -19,8 +19,6 @@ const userInfoPopup = new PopupWithForm ({
   selector: popupEdit,
   handleFormSubmit: (data)=> {
     userData.setUserInfo(data);
-    // nameValue.textContent = nameInput.value;
-    // jobValue.textContent = jobInput.value;
     userInfoPopup.close();
   }
 });
@@ -32,9 +30,8 @@ const userData = new UserInfo({
 editButton.addEventListener('click', ()=>{
   userInfoPopup.open();
   const user = userData.getUserInfo();
-  nameInput.value = user.name;
-  jobInput.value = user.description;
-
+  nameInput.value = user.userName;
+  jobInput.value = user.userDescription;
 })
 
 
@@ -84,26 +81,6 @@ const cardsList = new Section ({
 );
 
 cardsList.renderItems();
-
-
-
-//Создаем логику добавления карточек через попап Новое место
-
-// formElementAdd.addEventListener("submit", function (evt) {
-//   close(popupAddPicture);
-//   evt.preventDefault();
-
-//   const newElement = generateCard({
-//     name: addInputName.value,
-//     link: addInputLink.value,
-//   });
-
-//   cardsList.addItem(newElement);
-//   formElementAdd.reset();
-//   validationEditPopup.toggleButtonState();
-// })
-
-
 
 //в index.js создается экземпляр класса и вызывается его метод для валидации форм
 
