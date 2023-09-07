@@ -1,14 +1,15 @@
-import { openPopup} from "./utils.js";
-import {popupFullView,} from "./index.js";
+import PopupWithImage from "./PopupWithImage.js";
+import {popupFullView} from "./constants.js";
 
 class Card {
-  constructor(element, templateSelector) {
+  constructor(element, templateSelector, handleClickPopup) {
     this._templateSelector = templateSelector;
     this._newCard = this._getTemplate();
     this._name = element.name;
     this._link = element.link;
+    this.handleClickPopup = handleClickPopup;
   }
-
+//handleCardClick??
   // Создаем темплейт
   _getTemplate() {
     const cardTemplate = document
@@ -39,24 +40,11 @@ class Card {
     this._buttonLike.classList.toggle('element__like_active');
   }
 
-  //для откртыия полноразмен попапа
-  _handleOpenFullViewPopup() {
-    const popupCaption = popupFullView.querySelector(".popup__caption");
-    const popupViewImage = popupFullView.querySelector(".popup__view-image");
-
-    openPopup(popupFullView);
-
-    popupViewImage.src = this._link;
-    popupViewImage.alt = this._name;
-    popupCaption.textContent = this._name;
-  }
-
   //создаем слушатели
   _setEventListeners() {
     const deleteButton = this._newCard.querySelector(".element__delete");
     //bind - передается тoт контекст который нужен для this
     deleteButton.addEventListener("click", this._handleDeleteButton.bind(this));
-
     // ставим лайк
     this._buttonLike = this._newCard.querySelector(".element__like");
     //стрелоч функц с колбэком другой функц с данным контекстом
@@ -65,8 +53,7 @@ class Card {
     });
 
     this._elementImage.addEventListener("click", () => {
-      this._handleOpenFullViewPopup();
-
+      this.handleClickPopup({name: this._name, link: this._link});
      });
   }
 

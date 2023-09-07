@@ -4,19 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
-
     <title>Mesto</title>
   </head>
   <body class="body">
     <header class="header">
-      <img src="./images/логотип.svg"
+      <img src="<%=require("./images/логотип.svg")%>"
         alt="Логотип. Место Россия"
         class="header__logo">
     </header>
     <main>
       <section class="profile">
-        <img src="./images/аватар.jpg"
+        <img src="<%=require("./images/аватар.jpg")%>"
           alt="Фото Жак-Ив Кусто"
           class="profile__avatar">
         <div class="profile__info">
@@ -51,7 +49,7 @@
               id="name-input"
               type="text"
               required
-              name="fullName"
+              name="name"
               placeholder="Имя"
               minlength="2"
               maxlength="40">
@@ -62,7 +60,7 @@
               id="description"
               type="text"
               required
-              name="usersInfo"
+              name="description"
               placeholder="О себе"
               minlength="2"
               maxlength="200">
@@ -82,7 +80,7 @@
               id="place-input"
               type="text"
               required
-              name="placeName"
+              name="name"
               placeholder="Название"
               minlength="2"
               maxlength="30">
@@ -93,7 +91,7 @@
               id="link-input"
               type="url"
               required
-              name="pictureLink"
+              name="link"
               placeholder="Ссылка на картинку">
             <span class="popup__input-error link-input-error"></span>
           </div>
@@ -109,9 +107,6 @@
         <p class="popup__caption"></p>
        </div>
     </div>
-
-    <script type="module" src="./script/index.js" defer></script>
-
     <template class="picture-template picture-template_type_default">
       <div class="element">
         <button class="element__delete" type="button"></button>
