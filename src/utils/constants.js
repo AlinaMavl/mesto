@@ -64,6 +64,6 @@ const settings = {
 
 export {elementCards, settings, editButton, nameValue, jobValue,
   elementCaption, elementImage,
-   popupEdit, closeEditButton,
+  popupEdit, closeEditButton,
   nameInput, jobInput, formEdit, addButton, popupAddPicture, closeAddButton, formElementAdd,
   addInputName, addInputLink, popupFullView,popupFullImage, popupFullCaption, closeButtonFullView}

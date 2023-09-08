@@ -1,6 +1,3 @@
-import PopupWithImage from "./PopupWithImage.js";
-import {popupFullView} from "./constants.js";
-
 class Card {
   constructor(element, templateSelector, handleClickPopup) {
     this._templateSelector = templateSelector;
@@ -13,7 +10,7 @@ class Card {
   // Создаем темплейт
   _getTemplate() {
     const cardTemplate = document
-      .querySelector(".picture-template")
+      .querySelector(this._templateSelector)
       .content
       .querySelector(".element")
       .cloneNode(true); // добавляем в эту секцию темплейт и клонируем
