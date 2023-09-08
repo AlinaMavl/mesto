@@ -1,18 +1,18 @@
-import '../pages/index.css'; // добавьте импорт главного файла стилей
+import './index.css'; // добавьте импорт главного файла стилей
 import { elementCards, settings, editButton, nameValue, jobValue,
   elementCaption, elementImage,
   popupEdit, nameInput, jobInput, formEdit, addButton,
   popupAddPicture, closeAddButton, formElementAdd, addInputName, addInputLink, popupFullView,
   popupFullCaption,popupFullImage,
   closeButtonFullView, closeEditButton}
-  from "./constants.js";
-import Section  from './Section.js';
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import Popup from './Popup.js';
-import UserInfo from './UserInfo.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
+  from "../utils/constants.js";
+import Section  from '../components/Section';
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Popup from '../components/Popup.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 
 const userInfoPopup = new PopupWithForm ({
