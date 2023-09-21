@@ -18,11 +18,6 @@ class UserInfo {
      this._name.textContent = name;
      this._description.textContent = about;
      this._avatar.src = avatar;
-    //  this.setUserAvatar = avatar
-
-  }
-  setUserAvatar() {
-    this._avatar.src = avatar;
   }
 
 }

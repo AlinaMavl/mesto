@@ -63,10 +63,13 @@ class Api {
     }
 
   patchAvatar(data) {
+    console.log(data)
     return this._sendRequest(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        avatar: data.link
+      })
     })
   }
 }

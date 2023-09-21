@@ -117,7 +117,7 @@ function handleUserAvatar (data) {
 
   api.patchAvatar(data)
     .then ((data) => {
-      userData.setUserAvatar(data)
+      userData.setUserInfo(data)
       profileAvatar.src = data.avatar;
 
     })
