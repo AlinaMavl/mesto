@@ -9,6 +9,11 @@ class PopupWithConfirmation extends Popup {
 
   }
 
+    submitConfirmation() {
+      if(owner._id !== user._id){
+
+      }
+    }
 
 //какой айдишник для удаления внутри метода. этот попап вы
 //открываете только в одном случае - нажатие на кнопку удаления карточки.
