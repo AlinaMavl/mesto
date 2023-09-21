@@ -1,10 +1,12 @@
 class Card {
-  constructor(element, templateSelector, handleClickPopup) {
+  constructor({name, link, _id}, templateSelector, handleClickPopup) {
     this._templateSelector = templateSelector;
     this._newCard = this._getTemplate();
-    this._name = element.name;
-    this._link = element.link;
+    this._name = name;
+    this._link = link;
+    this._id = _id;
     this.handleClickPopup = handleClickPopup;
+    // this.handleDeleteClick = handleDeleteClick;
   }
 //handleCardClick??
   // Создаем темплейт
@@ -28,9 +30,15 @@ class Card {
   }
   //для слушателя кнопки удаления
   _handleDeleteButton() {
-    this._newCard.remove();
+    // this.handleDeleteClick(this._id);
+        this._newCard.remove();
     this._newCard = null; //удаляем из браузера а не просто скрыв
   }
+
+  // delete() {
+  //   // this._newCard.remove();
+  //   this._newCard = null; //удаляем из браузера а не просто скрыв
+  // }
 
   //ддя слуш кнопки лайка
   _handleLikeButton() {
