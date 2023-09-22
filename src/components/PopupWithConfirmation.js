@@ -1,32 +1,29 @@
 import Popup from "./Popup";
 
 class PopupWithConfirmation extends Popup {
-  constructor({selector, handleFormSubmit}) {
+  constructor(selector) {
     super(selector);
-    this._handleFormSubmit = handleFormSubmit;
-    this._form = this._popup
-      .querySelector('.popup__form');
-
+    this._popup= selector;
+    console.log(this._popup);
+    this._form = this._popup.querySelector('.popup__form');
+    this._submitButton = this._form.querySelector('.popup__submit')
   }
-
-    submitConfirmation() {
-      if(owner._id !== user._id){
-
-      }
+    open(id) {
+      this._id = id;
+      super.open();
+      console.log(this._id)
     }
 
-//какой айдишник для удаления внутри метода. этот попап вы
-//открываете только в одном случае - нажатие на кнопку удаления карточки.
-//соответственно и переопределять выполняемую функцию надо только после нажатия
-//на кнопку удаления (перед непосредственным открытием попапа)
+    setAction(id){
+      this._formConfirmation = id;
+    }
+
   setEventListeners() {
-    this._form.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        this._handleFormSubmit();
-    });
-
     super.setEventListeners();
-
+    this._submitButton.addEventListener('submit', (evt) => {
+        this._formConfirmation(this._id);
+        evt.preventDefault();
+    });
   }
 
 }

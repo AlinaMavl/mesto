@@ -40,6 +40,7 @@ api.getCardList()
    })
   .catch((err) => console.log(err))
 
+
 //POPUP ADD PLACE
 const popupAddPlace = new PopupWithForm ({
   selector: popupAddPicture,
@@ -65,8 +66,11 @@ popupAddPlace.setEventListeners();
 
 
 //USER_POPUP
+let userId;
+
 api.getUserInfo()
   .then ((user) => {
+    userId = user['_id'];
     userData.setUserInfo(user);
   })
   .catch((err) => console.log(`Whats the f${err}`))
@@ -128,7 +132,9 @@ function handleUserAvatar (data) {
 }
 
 userAvatar.setEventListeners();
-//Попап увеличения изображения- закрытие! Открытие in class Card!
+
+
+//POPUP_FULL-VIEW! Открытие in class Card!
 const popupFullPicture = new PopupWithImage (popupFullView);
 
 function handleClickPopup(data) {
@@ -138,13 +144,46 @@ function handleClickPopup(data) {
 popupFullPicture.setEventListeners();
 
 
+//POPUP_CONFIRMATION
+const submitConfirmation = new PopupWithConfirmation (popupConfirmed);
+console.log(popupConfirmed);
+console.log(submitConfirmation);
+
+submitConfirmation.setEventListeners();
+
+
 function generateCard (item) {
-    const card = new Card (item ,
+    const card = new Card (
+      item,
+
       '.picture-template_type_default',
-      (data)=>handleClickPopup(data));
-    const cardElement = card.createCard();
-    return cardElement;
-}
+
+      (data)=>handleClickPopup(data),
+
+      (card) => {
+        submitConfirmation.open();
+        console.log(submitConfirmation)
+        submitConfirmation.setAction(
+          (id) => {
+          api.deleteCardApi(id)
+            .then(() => {
+              card.delete();
+              console.log(card)
+              submitConfirmation.close();
+            })
+            .catch((err) => console.log(`Whats the ${err}`))
+
+          }), userId
+
+        })
+      const cardElement = card.createCard();
+      return cardElement;
+  }
+
+
+
+
+
 
 //в index.js создается экземпляр класса и вызывается его метод для валидации форм
 
@@ -159,18 +198,3 @@ validationEditPopup.enableValidation();
 const avatarForm = document.forms.avatar;
 const validationAvatarPopup = new FormValidator(settings, avatarForm)
 validationAvatarPopup.enableValidation();
-
-// смена такста кнопки
-// var but = document.getElementById("but");
-// but.onclick = function() {
-//     var old = this.innerText,
-//         that = this;
-//     this.innerText = "Подождите..."
-//     this.disabled = true
-
-//     // colback function
-//     setTimeout(function() {
-//         that.innerText = old;
-//         that.disabled = false
-//     }, 10000)
-// }

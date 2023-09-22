@@ -1,14 +1,16 @@
 class Card {
-  constructor({name, link, _id}, templateSelector, handleClickPopup) {
+  constructor(data, templateSelector, handleClickPopup, handleDeletePopup) {
     this._templateSelector = templateSelector;
     this._newCard = this._getTemplate();
-    this._name = name;
-    this._link = link;
-    this._id = _id;
+    this._name = data.name;
+    this._link = data.link;
+    this._id = data._id;
     this.handleClickPopup = handleClickPopup;
-    // this.handleDeleteClick = handleDeleteClick;
+    this.handleDeletePopup = handleDeletePopup;
+    this._ownerId = data.owner._id;
+    // this._userId= userId;
   }
-//handleCardClick??
+
   // Создаем темплейт
   _getTemplate() {
     const cardTemplate = document
@@ -27,18 +29,23 @@ class Card {
     this._elementImage = this._newCard.querySelector('.element__image');
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
-  }
-  //для слушателя кнопки удаления
-  _handleDeleteButton() {
-    // this.handleDeleteClick(this._id);
-        this._newCard.remove();
-    this._newCard = null; //удаляем из браузера а не просто скрыв
+    // this._removeDeleteButton();
   }
 
-  // delete() {
-  //   // this._newCard.remove();
-  //   this._newCard = null; //удаляем из браузера а не просто скрыв
+  // _removeDeleteButton(){
+  //   if(this._ownerId !== this._userId){
+  //     this._deleteButton.remove();
+  //   }
   // }
+  //для слушателя кнопки удаления
+  _handleDeleteButton() {
+    this.handleDeletePopup(this);
+  }
+
+  delete() {
+    this._newCard.remove();
+    this._newCard = null;
+  }
 
   //ддя слуш кнопки лайка
   _handleLikeButton() {
@@ -47,9 +54,12 @@ class Card {
 
   //создаем слушатели
   _setEventListeners() {
-    const deleteButton = this._newCard.querySelector(".element__delete");
+    this._deleteButton = this._newCard.querySelector(".element__delete");
     //bind - передается тoт контекст который нужен для this
-    deleteButton.addEventListener("click", this._handleDeleteButton.bind(this));
+
+    this._deleteButton.addEventListener("click", () => {
+    this._handleDeleteButton();
+  });
     // ставим лайк
     this._buttonLike = this._newCard.querySelector(".element__like");
     //стрелоч функц с колбэком другой функц с данным контекстом
@@ -62,6 +72,8 @@ class Card {
      });
   }
 
+
+
   //создаем карту
   createCard() {
     this._newCard = this._getTemplate();
@@ -70,6 +82,7 @@ class Card {
 
     return this._newCard;
   }
+
 }
 
 export default Card;
