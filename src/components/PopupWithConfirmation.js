@@ -17,6 +17,8 @@ class PopupWithConfirmation extends Popup {
       this._userID = id
     }
 
+
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {

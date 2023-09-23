@@ -8,6 +8,8 @@ class PopupWithForm extends Popup {
       .querySelector('.popup__form');
     this._inputs = this._form
        .querySelectorAll('.popup__input');
+    this._submitButton = this._form.querySelector('.popup__submit');
+    this._submitButtonText = this._submitButton.textContent;
     this._handleFormSubmit = handleFormSubmit;
   }
 
@@ -36,6 +38,14 @@ class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  renderLoading(isLoading, loadingText= 'Сохранение...') {
+    if(isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 }
 

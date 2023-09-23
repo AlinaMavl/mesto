@@ -20,6 +20,7 @@ class Card {
     this.handleDeleteLikeIcon = handleDeleteLikeIcon;
 
 
+
     // this.isLike = false;
   }
 
@@ -68,27 +69,32 @@ class Card {
 //LIKE
   addLike() {
     this._buttonLike.classList.add('element__like_active');
-        this._likeCounter.textContent = this._likes +=1;
+    // this._likeCounter.textContent =  parseInt(this._likeCounter.textContent) + 1;
+        this._likeCounter.textContent = this._likes.length;
   }
 
   removeLike() {
     this._buttonLike.classList.remove('element__like_active');
-        this._likeCounter.textContent = this._likes -=1;
-
+    // this._likeCounter.textContent =  parseInt(this._likeCounter.textContent) - 1;
+        this._likeCounter.textContent = this._likes.length;
   }
 
   setLikes(likes) {
     this._like = likes;
-    this._likeCounter.textContent = this._likes;
+    this._likeCounter.textContent = this._likes.length;
   }
 
-  _isLiked() {
-    if (
-      this._likes.some((data) => {
+  isLiked() {
+    if (this._buttonLike) {
+      if ( this._likes.some((data) => {
        return data._id === this._userId})) {
        this._buttonLike.classList.add('element__like_active');
        console.log(this._buttonLike);
        }
+
+
+    }
+
       }
 
 
@@ -121,7 +127,7 @@ class Card {
   //создаем карту
   createCard() {
     this._newCard = this._getTemplate();
-    this._isLiked();
+    this.isLiked();
     this._setData();
     this._setEventListeners();
     this.removeDeleteButton();

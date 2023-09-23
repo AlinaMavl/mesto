@@ -52,6 +52,7 @@ const popupAddPlace = new PopupWithForm ({
 });
 
 function handleAddSubmit(formItem) {
+    popupAddPlace.renderLoading(true);
     api.createCardApi(formItem)
       .then ((newCardApi)=> {
         const card = generateCard(newCardApi);
@@ -59,6 +60,9 @@ function handleAddSubmit(formItem) {
       popupAddPlace.close();
       })
       .catch((err) => console.log(`Whats the ${err}`))
+      .finally(()=> {
+        popupAddPlace.renderLoading(false)
+      })
 }
 
 addButton.addEventListener('click', ()=> {
@@ -84,12 +88,21 @@ const userInfoPopup = new PopupWithForm ({
 });
 
 function handleUserSubmit (data){
+
+
+
   api.patchUserInfo(data)
+
     .then ((data) => {
       userData.setUserInfo(data);
     })
+    .then(()=>{
+      userInfoPopup.renderLoading(true);
+    })
     .catch((err) => console.log(`Whats the ${err}`))
-
+    .finally(()=> {
+      userInfoPopup.renderLoading(false);
+    })
     userInfoPopup.close();
 }
 
@@ -116,12 +129,19 @@ const userAvatar = new PopupWithForm({
 })
 
 function handleUserAvatar (data) {
+  userAvatar.renderLoading(true);
+
 
   api.patchAvatar(data)
     .then ((data) => {
       userData.setUserInfo(data);
       profileAvatar.src = data.avatar;
 
+    })
+
+    .catch((err) => console.log(`Whats the ${err}`))
+    .finally(()=>{
+      userAvatar.renderLoading(false)
     })
 
     validationAvatarPopup.toggleButtonState();
@@ -162,6 +182,7 @@ function generateCard (item) {
           (id) => {
           api.deleteCardApi(id)
             .then(() => {
+
               card.delete();
 
               submitConfirmation.close();
@@ -176,7 +197,8 @@ function generateCard (item) {
         (id)=>{
           api. putLike(id)
             .then ((data) => {
-              card.addLike(data._id);
+              card.setLikes(data.likes);
+              card.addLike(data.id);
             })
             .catch((err) => console.log(`Whats the ${err}`))
           },
@@ -184,10 +206,13 @@ function generateCard (item) {
           (id) => {
             api.deleteLike(id)
             .then ((data) => {
-              card.removeLike(data._id);
+              card.setLikes(data.likes);
+              console.log(data.likes)
+              card.removeLike(data.id);
             })
             .catch((err) => console.log(`Whats the ${err}`))
-          }
+          },
+
     )
 
       const cardElement = card.createCard();

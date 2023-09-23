@@ -70,13 +70,16 @@ class Api {
   }
 
   putLike(id) {
+    console.log(id);
     return this._sendRequest(`${this._url}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers
     })
+
   }
 
   deleteLike(id) {
+    console.log(id)
     return this._sendRequest(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers
