@@ -1,7 +1,7 @@
 import './index.css'; // добавьте импорт главного файла стилей
 import { optionsApi, settings, editButton, nameValue, jobValue,
   profileAvatar,
-  elementOfTemplate,elementCaption, elementImage,
+  elementOfTemplate,elementCaption, elementImage, elementLikeCounter,
   popupEdit, nameInput, jobInput, formEdit, addButton,
   popupAddPicture, closeAddButton, formElementAdd, addInputName, addInputLink,
   addInputs,popupFullView,
@@ -34,11 +34,15 @@ const cardsList = new Section ({
   }, '.elements'
 );
 
-api.getCardList()
-  .then ((cards) => {
-    cardsList.renderItems(cards)
-   })
-  .catch((err) => console.log(err))
+Promise.all([api.getUserInfo(), api.getCardList()])
+    .then(([data, cards]) => {
+        userId = data._id;
+        userData.setUserInfo(data);;
+        cardsList.renderItems(cards);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 
 
 //POPUP ADD PLACE
@@ -54,7 +58,7 @@ function handleAddSubmit(formItem) {
         cardsList.addItem(card);
       popupAddPlace.close();
       })
-      .catch((err) => console.log(`Whats the f${err}`))
+      .catch((err) => console.log(`Whats the ${err}`))
 }
 
 addButton.addEventListener('click', ()=> {
@@ -67,13 +71,6 @@ popupAddPlace.setEventListeners();
 
 //USER_POPUP
 let userId;
-
-api.getUserInfo()
-  .then ((user) => {
-    userId = user['_id'];
-    userData.setUserInfo(user);
-  })
-  .catch((err) => console.log(`Whats the f${err}`))
 
 const userData = new UserInfo({
   name: nameValue,
@@ -91,7 +88,7 @@ function handleUserSubmit (data){
     .then ((data) => {
       userData.setUserInfo(data);
     })
-    .catch((err) => console.log(`Whats the f${err}`))
+    .catch((err) => console.log(`Whats the ${err}`))
 
     userInfoPopup.close();
 }
@@ -107,6 +104,7 @@ editButton.addEventListener('click', ()=>{
 
 userInfoPopup.setEventListeners();
 
+
 //USER_AVATAR
 profileAvatar.addEventListener('click', ()=> {
   userAvatar.open();
@@ -121,14 +119,13 @@ function handleUserAvatar (data) {
 
   api.patchAvatar(data)
     .then ((data) => {
-      userData.setUserInfo(data)
+      userData.setUserInfo(data);
       profileAvatar.src = data.avatar;
 
     })
 
     validationAvatarPopup.toggleButtonState();
     userAvatar.close();
-    console.log(data);
 }
 
 userAvatar.setEventListeners();
@@ -146,12 +143,11 @@ popupFullPicture.setEventListeners();
 
 //POPUP_CONFIRMATION
 const submitConfirmation = new PopupWithConfirmation (popupConfirmed);
-console.log(popupConfirmed);
-console.log(submitConfirmation);
 
 submitConfirmation.setEventListeners();
 
 
+//RENDER/GENERATE_CARD
 function generateCard (item) {
     const card = new Card (
       item,
@@ -161,30 +157,45 @@ function generateCard (item) {
       (data)=>handleClickPopup(data),
 
       (card) => {
-        submitConfirmation.open();
-        console.log(submitConfirmation)
+        submitConfirmation.open(card._id);
         submitConfirmation.setAction(
           (id) => {
           api.deleteCardApi(id)
             .then(() => {
               card.delete();
-              console.log(card)
+
               submitConfirmation.close();
             })
             .catch((err) => console.log(`Whats the ${err}`))
 
-          }), userId
+          })
+          },
 
-        })
+        userId,
+
+        (id)=>{
+          api. putLike(id)
+            .then ((data) => {
+              card.addLike(data._id);
+            })
+            .catch((err) => console.log(`Whats the ${err}`))
+          },
+
+          (id) => {
+            api.deleteLike(id)
+            .then ((data) => {
+              card.removeLike(data._id);
+            })
+            .catch((err) => console.log(`Whats the ${err}`))
+          }
+    )
+
       const cardElement = card.createCard();
       return cardElement;
   }
 
 
-
-
-
-
+//VALIDATION
 //в index.js создается экземпляр класса и вызывается его метод для валидации форм
 
 const addForm = document.forms.profile;

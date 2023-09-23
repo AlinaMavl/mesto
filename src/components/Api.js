@@ -69,25 +69,20 @@ class Api {
     })
   }
 
-  // putLike(data) {
-  //   return this._sendRequest(`${this._url}/cards`, {
-  //     method: "PUT",
-  //     headers: this._headers,
-  //     // body: JSON.stringify()
-  //   })
-  // }
+  putLike(id) {
+    return this._sendRequest(`${this._url}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers
+    })
+  }
 
-  // deleteLike(data) {
-  //   return this._sendRequest(`${this._url}/cards`, {
-  //     method: "DELETE",
-  //     headers: this._headers,
-  //     // body: JSON.stringify()
-  //   })
-  // }
+  deleteLike(id) {
+    return this._sendRequest(`${this._url}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers
+    })
+  }
 
-  // getAllData() {
-  //   Promise.all[this.getUserInfo(), putLike()]
-  // }
 }
 
 export default Api;

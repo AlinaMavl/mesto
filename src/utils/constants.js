@@ -15,6 +15,7 @@ const profileAvatar = document.querySelector('.profile__avatar');
 const elementOfTemplate = document.querySelector(".element");
 const elementCaption = document.querySelector(".element__caption");
 const elementImage = document.querySelector('.element__image');
+const elementLikeCounter = document.querySelector('.element__like-counter');
 
 const popupEdit = document.querySelector(".popup_edit");
 const closeEditButton = popupEdit.querySelector(".popup__close-button");
@@ -53,7 +54,7 @@ const settings = {
 
 export {optionsApi, settings, editButton, nameValue, jobValue,
   profileAvatar,
-  elementOfTemplate, elementCaption, elementImage,
+  elementOfTemplate, elementCaption, elementImage,elementLikeCounter,
   popupEdit, closeEditButton,
   nameInput, jobInput, formEdit, addButton, popupAddPicture, closeAddButton, formElementAdd,
   addInputName, addInputLink, addInputs, popupFullView,popupFullImage, popupFullCaption, closeButtonFullView,
