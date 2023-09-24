@@ -1,6 +1,6 @@
 class Popup {
-  constructor (selector) {
-    this._popup = selector;
+  constructor (popup) {
+    this._popup = popup;
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
@@ -24,7 +24,7 @@ class Popup {
   setEventListeners() {
     this._popup.addEventListener('click', (evt) => {
       if ( evt.target.classList.contains('popup__close-button') ||evt.target.classList.contains("popup")) {
-        this.close(evt.target);
+        this.close();
       }
     })
   }

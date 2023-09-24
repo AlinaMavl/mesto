@@ -14,9 +14,6 @@ class Api {
         //error уже встроен
         throw new Error("Что-то не так");
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   getCardList() {
@@ -70,16 +67,13 @@ class Api {
   }
 
   putLike(id) {
-    console.log(id);
     return this._sendRequest(`${this._url}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers
     })
-
   }
 
   deleteLike(id) {
-    console.log(id)
     return this._sendRequest(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers
